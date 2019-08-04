@@ -10,18 +10,18 @@ import com.nfd.hovering.viewmodels.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class TimedFragment : Fragment() {
+class SettingsFragment : Fragment() {
     private val model : MainViewModel by viewModel()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_about, container, false)
+        val view = inflater.inflate(R.layout.fragment_settings, container, false)
         val context = context
 
         return view
     }
 
     companion object {
-        fun newInstance(): TimedFragment = TimedFragment()
+        fun newInstance(): SettingsFragment = SettingsFragment()
     }
 }
 

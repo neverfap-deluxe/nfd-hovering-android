@@ -18,7 +18,14 @@ class MainViewModel(val context: Context) : ViewModel() {
     val increasingScale = MutableLiveData<Boolean>()
     val fadeTimer = MutableLiveData<Int>()
 
-    fun setInitialDefaults(initialScaleStateVal: Int, endScaleStateVal: Int, scaleRateVal: Float, timerVal: Int, increasingScaleVal: Boolean, fadeTimerVal: Int) {
+    fun setInitialDefaults(
+        initialScaleStateVal: Int,
+        endScaleStateVal: Int,
+        scaleRateVal: Float,
+        timerVal: Int,
+        increasingScaleVal: Boolean,
+        fadeTimerVal: Int
+    ) {
         initialScaleState.postValue(initialScaleStateVal)
         endScaleState.postValue(endScaleStateVal)
         scaleRate.postValue(scaleRateVal)

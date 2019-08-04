@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Hovering</string>
 
-    <string name="title_game">Freestyle</string>
-    <string name="title_settings">Timed</string>
+    <string name="title_game">Hover</string>
+    <string name="title_settings">Settings</string>
     <string name="title_about">About</string>
 </resources>
