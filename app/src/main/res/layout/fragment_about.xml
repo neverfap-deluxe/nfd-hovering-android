@@ -1,12 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".MainActivity">
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            tools:context=".MainActivity">
+
+    <LinearLayout
+            android:layout_margin="@dimen/view_layout_margin"
+            android:orientation="vertical"
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <TextView
+                android:id="@+id/fragment_about_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:text="About Hovering"
+
+                android:textSize="50sp"
+                android:paddingTop="24dp"
+                android:paddingBottom="24dp"
+                android:lineSpacingExtra="6sp"
+        />
+
+        <TextView
+                android:id="@+id/fragment_about_text_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginBottom="20dp"
+                android:textSize="20sp"
+                android:lineSpacingExtra="2sp"
+
+                android:text="Hovering is a meditation technique that I created to help people who struggle to meditate."
+        />
+
+        <TextView
+                android:id="@+id/fragment_about_text_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginBottom="20dp"
+                android:textSize="20sp"
+                android:lineSpacingExtra="2sp"
+
+                android:text="It's proven to be incredibly effective, so I decided to create an Android version of the original web app. It was first created as part of NeverFap Deluxe which is a porn addiciton recovery platform that uses awareness and meditation in order to help us develop control over our minds."
+        />
+
+        <TextView
+                android:id="@+id/fragment_about_text_21"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginBottom="20dp"
+                android:textSize="20sp"
+                android:lineSpacingExtra="2sp"
+
+                android:text="You can learn more about it on the website:"
+        />
+
+        <TextView
+                android:id="@+id/fragment_about_text_2_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginBottom="20dp"
+                android:textSize="20sp"
+                android:lineSpacingExtra="2sp"
+                android:onClick="onClickWebsiteLink"
+
+                android:text="https://neverfapdeluxe.com/"
+                android:textColor="#00FFFF"/>
+
+
+        <TextView
+                android:id="@+id/fragment_about_text_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginBottom="20dp"
+                android:textSize="20sp"
+                android:lineSpacingExtra="2sp"
+
+                android:text="Regardless, I wish you best of luck with your porn recovery journey!"
+        />
+
+        <TextView
+                android:id="@+id/fragment_about_text_5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginBottom="20dp"
+                android:textSize="20sp"
+                android:lineSpacingExtra="2sp"
+
+                android:text="Sincerely,"
+        />
+
+        <TextView
+                android:id="@+id/fragment_about_text_6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginBottom="60dp"
+                android:textSize="20sp"
+                android:lineSpacingExtra="2sp"
+
+                android:text="Daddy Reade"
+        />
+
+    </LinearLayout>
+
+</ScrollView>
+

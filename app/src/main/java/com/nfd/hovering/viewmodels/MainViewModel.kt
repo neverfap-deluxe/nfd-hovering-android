@@ -8,39 +8,31 @@ import com.nfd.hovering.data.Score
 class MainViewModel(val context: Context) : ViewModel() {
     val scores = MutableLiveData<MutableList<Score>>()
 
-    val initialScaleState = MutableLiveData<Int>()
-    val endScaleState = MutableLiveData<Int>()
-    val scaleRate = MutableLiveData<Float>()
+//    val initialScaleState = MutableLiveData<Float>().apply { postValue(1.0f)}
+//    val endScaleState = MutableLiveData<Float>().apply { postValue(2.0f)}
+//    val scaleRate = MutableLiveData<Float>().apply { postValue(0.0003f)}
 
-    val timer = MutableLiveData<Int>()
-    val scale = MutableLiveData<Float>()
+    val timer = MutableLiveData<Int>().apply { postValue(0)}
+    val scale = MutableLiveData<Float>().apply { postValue(1.0f)}
+    val fadeTimer = MutableLiveData<Int>().apply { postValue(0)}
 
-    val increasingScale = MutableLiveData<Boolean>()
-    val fadeTimer = MutableLiveData<Int>()
+//    val increasingScale = MutableLiveData<Boolean>().apply { postValue(true)}
 
-    fun setInitialDefaults(
-        initialScaleStateVal: Int,
-        endScaleStateVal: Int,
-        scaleRateVal: Float,
-        timerVal: Int,
-        increasingScaleVal: Boolean,
-        fadeTimerVal: Int
-    ) {
-        initialScaleState.postValue(initialScaleStateVal)
-        endScaleState.postValue(endScaleStateVal)
-        scaleRate.postValue(scaleRateVal)
+    var duration: Int = 10
 
-        timer.postValue(timerVal)
-
-        increasingScale.postValue(increasingScaleVal)
-        fadeTimer.postValue(fadeTimerVal)
-    }
+//    fun initSettings(durationVal: Any) {
+//        durationVal = duration;
+//    }
 
     fun increaseTimer(timerValue: Int) {
         timer.postValue(timerValue)
     }
 
-    fun increaseScale(scaleValue: Float) {
+    fun setScale(scaleValue: Float) {
         scale.postValue(scaleValue)
+    }
+
+    fun setFadeTimer(fadeTimerVal: Int) {
+        fadeTimer.postValue(fadeTimerVal)
     }
 }

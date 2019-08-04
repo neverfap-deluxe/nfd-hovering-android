@@ -11,11 +11,11 @@ import com.nfd.hovering.R
 import com.nfd.hovering.viewmodels.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class AboutFragment : Fragment() {
+class RecordsFragment : Fragment() {
     private val model : MainViewModel by viewModel()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_about, container, false)
+        val view = inflater.inflate(R.layout.fragment_records, container, false)
         val context = context
 
 
@@ -23,7 +23,7 @@ class AboutFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance(): AboutFragment = AboutFragment()
+        fun newInstance(): RecordsFragment = RecordsFragment()
     }
 }
 
