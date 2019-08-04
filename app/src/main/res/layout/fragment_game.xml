@@ -20,7 +20,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
 
-            android:text="Hover" />
+    />
 
     <Button
             android:id="@+id/hover_button"
@@ -34,7 +34,8 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
 
-            android:text="Hover" />
+            android:text="Hover"
+    />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

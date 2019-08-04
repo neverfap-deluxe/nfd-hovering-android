@@ -13,6 +13,7 @@ class MainViewModel(val context: Context) : ViewModel() {
     val scaleRate = MutableLiveData<Float>()
 
     val timer = MutableLiveData<Int>()
+    val scale = MutableLiveData<Float>()
 
     val increasingScale = MutableLiveData<Boolean>()
     val fadeTimer = MutableLiveData<Int>()
@@ -32,4 +33,7 @@ class MainViewModel(val context: Context) : ViewModel() {
         timer.postValue(timerValue)
     }
 
+    fun increaseScale(scaleValue: Float) {
+        scale.postValue(scaleValue)
+    }
 }

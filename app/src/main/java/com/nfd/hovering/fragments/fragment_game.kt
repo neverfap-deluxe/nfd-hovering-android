@@ -9,10 +9,6 @@ import androidx.fragment.app.Fragment
 import com.nfd.hovering.viewmodels.MainViewModel
 import kotlinx.android.synthetic.main.fragment_game.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import android.util.Log
-import androidx.core.view.ViewCompat.setScaleY
-import androidx.core.view.ViewCompat.setScaleX
-import kotlinx.android.synthetic.main.fragment_game.*
 import androidx.lifecycle.Observer
 import java.util.*
 
@@ -32,12 +28,14 @@ class FreeFragment : Fragment() {
 
     // references
     var timer: Int = 0
+    var scale: Float = 1.0f
+    var scaleRate: Float = 0.0001f
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(com.nfd.hovering.R.layout.fragment_about, container, false)
         val context = context
 
-        hover_button.setOnTouchListener(View.OnTouchListener { v, event ->
+        hover_button?.setOnTouchListener(View.OnTouchListener { v, event ->
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> {
                     // Pressed down
@@ -64,26 +62,25 @@ class FreeFragment : Fragment() {
     fun startHovering() {
         model.setInitialDefaults(defaultInitialScaleState, defaultEndScaleState, defaultScaleRate, defaultTimer, defaultIncreasingScale, defaultFadeTimer)
 
+
         Timer().scheduleAtFixedRate(object : TimerTask() {
             override fun run() {
                 model.increaseTimer(timer + 1)
-
-                scaleElement()
+                model.increaseScale(scale + scaleRate)
             }
         }, 0, 1000)
 
 
         model.timer.observe(this, Observer { timerValue ->
             timer = timerValue
-            hover_text_update.text = ""+timerValue
+            hover_text_update.text = ""+timer
         })
-    }
+        model.scale.observe(this, Observer { scaleValue ->
+            scale = scaleValue
+            hover_button.scaleY = scale
+            hover_button.scaleX = scale
+        })
 
-    fun scaleElement() {
-        val scalingFactor = 0.5f
-
-        view.scaleY = scalingFactor
-        view.scaleX = scalingFactor
     }
 
     fun endHovering() {
