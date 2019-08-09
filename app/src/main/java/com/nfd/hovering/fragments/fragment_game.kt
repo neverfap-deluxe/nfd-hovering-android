@@ -7,19 +7,17 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import com.nfd.hovering.viewmodels.MainViewModel
 import kotlinx.android.synthetic.main.fragment_game.*
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import androidx.lifecycle.Observer
 import kotlinx.android.synthetic.main.fragment_game.view.*
 import java.util.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.MutableLiveData
 import com.nfd.hovering.Utilities.Helpers
 import kotlinx.android.synthetic.main.activity_main.*
-
-
-
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class GameFragment : Fragment() {
-    private val model : MainViewModel by viewModel()
+    private val model : MainViewModel by sharedViewModel()
     private lateinit var gameTimer: Timer
     private lateinit var scaleTimer: Timer
 
@@ -32,15 +30,34 @@ class GameFragment : Fragment() {
     var initialScaleState: Float = 1.0f
     var endScaleState: Float = 2.0f
 
-    var duration: Int? = null
+    var duration: Int = 10
+    var freeMode: Boolean = false
+    var hasReminders: Boolean = true
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(com.nfd.hovering.R.layout.fragment_game, container, false)
 
+        view.hover_text_time_limit.text = if (duration == 1) "Timed: $duration minute" else "Timed: $duration minutes"
+
         model.duration.observe(this, Observer { durationValue ->
-            updateDuration(durationValue)
-            Log.i("nfd", "duration updated: $durationValue")
+            duration = durationValue
+            Log.i("nfd", "fragment_game - duration updated: $durationValue $freeMode")
+            if (!freeMode) {
+                view.hover_text_time_limit.text = if (durationValue == 1) "Timed: $durationValue minute" else "Timed: $durationValue minutes"
+            }
         })
+
+        model.isFreeMode.observe(this, Observer { freeModeValue ->
+            freeMode = freeModeValue
+            view.hover_text_time_limit.text = "Free mode"
+            Log.i("nfd", "fragment_game - freeModeValue updated: $freeModeValue")
+        })
+
+        model.hasReminders.observe(this, Observer { hasRemindersValue ->
+            hasReminders = hasRemindersValue
+            Log.i("nfd", "fragment_game - hasRemindersValue updated: $hasRemindersValue")
+        })
+
 
         view.hover_button.setOnTouchListener(View.OnTouchListener { v, event ->
             when (event.action) {
@@ -79,9 +96,11 @@ class GameFragment : Fragment() {
         Helpers.fadeTextInstructions(hover_text_update)
         Helpers.fadeTextInstructions(hover_text_instructions)
         Helpers.fadeTextInstructions(hover_text_instructions_two)
+        Helpers.fadeTextInstructions(hover_text_time_limit)
+
         hover_button.text = ""
 
-        model.setInitialDefaults(duration)
+        model.setDuration(duration)
 
         gameTimer = Timer()
         gameTimer.scheduleAtFixedRate(object : TimerTask() {
@@ -124,6 +143,7 @@ class GameFragment : Fragment() {
 
         Helpers.unfadeTextInstructions(hover_text_instructions)
         Helpers.unfadeTextInstructions(hover_text_instructions_two)
+        Helpers.unfadeTextInstructions(hover_text_time_limit)
 
         hover_button.text = "Hover"
         model.increaseTimer(0)
@@ -163,13 +183,22 @@ class GameFragment : Fragment() {
     }
 
     private fun updateTimer(timerValue: Int) {
+        val durationMinutes = duration * 60
 
-        if (timer != 0 && timer % 60 == 0) {
-            model.setFadeTimer(5)
-            val minutes = timer / 60
-            hover_text_update.text = if (minutes == 1) "$minutes minute" else "$minutes minutes"
-            Helpers.unfadeTextInstructions(hover_text_update)
-            Helpers.fadeTextInstructions(hover_text_update)
+        if (!freeMode) {
+            if (durationMinutes == timerValue) {
+                endHovering(hover_button)
+            }
+        }
+
+        if (hasReminders) {
+            if (timer != 0 && timer % 60 == 0) {
+                model.setFadeTimer(5)
+                val minutes = timer / 60
+                hover_text_update.text = if (minutes == 1) "$minutes minute" else "$minutes minutes"
+                Helpers.unfadeTextInstructions(hover_text_update)
+                Helpers.fadeTextInstructions(hover_text_update)
+            }
         }
 
         timer = timerValue
@@ -180,10 +209,6 @@ class GameFragment : Fragment() {
         if (fadeTimerValue === 0) {
             Helpers.fadeTextInstructions(hover_text_update)
         }
-    }
-
-    private fun updateDuration(durationValue: Int) {
-        duration = durationValue
     }
 
     companion object {

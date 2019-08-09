@@ -18,11 +18,22 @@ class MainViewModel(val context: Context) : ViewModel() {
 
 //    val increasingScale = MutableLiveData<Boolean>().apply { postValue(true)}
 
-    var duration: Int = 10
+    var duration = MutableLiveData<Int>().apply { postValue(10)}
 
-//    fun initSettings(durationVal: Any) {
-//        durationVal = duration;
-//    }
+    var isFreeMode = MutableLiveData<Boolean>().apply { postValue(false)}
+    var hasReminders = MutableLiveData<Boolean>().apply { postValue(true)}
+
+    fun toggleFreeMode(freeModeVal: Boolean) {
+        isFreeMode.postValue(freeModeVal)
+    }
+
+    fun toggleReminders(remindersVal: Boolean) {
+        hasReminders.postValue(remindersVal)
+    }
+
+    fun setDuration(durationVal: Int) {
+        duration.postValue(durationVal)
+    }
 
     fun increaseTimer(timerValue: Int) {
         timer.postValue(timerValue)

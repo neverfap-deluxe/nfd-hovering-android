@@ -3,6 +3,7 @@ package com.nfd.hovering
 import android.app.Application
 import com.nfd.hovering.viewmodels.MainViewModel
 import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidLogger
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.startKoin
 import org.koin.core.module.Module
@@ -13,6 +14,7 @@ class MainApplication : Application() {
         super.onCreate()
 
         startKoin {
+            androidLogger()
             // declare used Android context
             androidContext(this@MainApplication)
             // declare modules

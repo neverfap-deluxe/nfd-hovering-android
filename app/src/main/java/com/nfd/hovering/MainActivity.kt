@@ -8,7 +8,6 @@ import android.view.MenuItem
 import android.view.View
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.nfd.hovering.fragments.AboutFragment
 import com.nfd.hovering.fragments.GameFragment
@@ -18,7 +17,7 @@ import com.nfd.hovering.viewmodels.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
-//    private val model: MainViewModel by viewModel()
+    private val model: MainViewModel by viewModel()
 
     private val aboutFragment = AboutFragment.newInstance()
     private val gameFragment = GameFragment.newInstance()
@@ -49,7 +48,7 @@ class MainActivity : AppCompatActivity() {
 //            true
 //        }
         R.id.navigation_website -> {
-            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("http://neverfapdeluxe.com/"))
+            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://tryhovering.com/"))
             startActivity(browserIntent)
             true
         }
