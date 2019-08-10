@@ -24,7 +24,7 @@
 
                 android:text="About Hovering"
 
-                android:textSize="50sp"
+                android:textSize="40sp"
                 android:paddingTop="24dp"
                 android:paddingBottom="24dp"
                 android:lineSpacingExtra="6sp"
@@ -39,7 +39,7 @@
                 android:textSize="20sp"
                 android:lineSpacingExtra="2sp"
 
-                android:text="Hovering is a meditation technique that I created to help people who struggle to meditate."
+                android:text="Hovering is a meditation technique."
         />
 
         <TextView
@@ -51,7 +51,7 @@
                 android:textSize="20sp"
                 android:lineSpacingExtra="2sp"
 
-                android:text="It's proven to be incredibly effective, so I decided to create an Android version of the original web app. It was first created as part of NeverFap Deluxe which is a porn addiciton recovery platform that uses awareness and meditation in order to help us develop control over our minds."
+                android:text="It has been designed to be easy to understand, simple to practice, as well as remain acessible to people of all ages."
         />
 
         <TextView
@@ -63,7 +63,7 @@
                 android:textSize="20sp"
                 android:lineSpacingExtra="2sp"
 
-                android:text="You can learn more about it on the website:"
+                android:text="You can learn more about how to practice Hovering on the official website:"
         />
 
         <TextView
@@ -76,7 +76,7 @@
                 android:lineSpacingExtra="2sp"
                 android:onClick="onClickWebsiteLink"
 
-                android:text="https://neverfapdeluxe.com/"
+                android:text="https://tryhovering.com/"
                 android:textColor="#00FFFF"/>
 
 
@@ -89,7 +89,7 @@
                 android:textSize="20sp"
                 android:lineSpacingExtra="2sp"
 
-                android:text="Regardless, I wish you best of luck with your porn recovery journey!"
+                android:text="It explains in great detail the purpose and rationale of practicing Hovering."
         />
 
         <TextView

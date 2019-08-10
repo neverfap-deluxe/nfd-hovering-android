@@ -49,7 +49,9 @@ class GameFragment : Fragment() {
 
         model.isFreeMode.observe(this, Observer { freeModeValue ->
             freeMode = freeModeValue
-            view.hover_text_time_limit.text = "Free mode"
+            if (freeMode) {
+                view.hover_text_time_limit.text = "Free mode"
+            }
             Log.i("nfd", "fragment_game - freeModeValue updated: $freeModeValue")
         })
 
